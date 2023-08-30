@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>Tinder Appointmentへようこそ!!</title>
+</head>
+<body>
+    <h1>名前と日時を入力してください</h1>
+    <form method="post" action="{% url 'redirect_target_url_name' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" style="appearance: button;">登録</button>
+    </form>
+</body>
+</html>
+
+
+

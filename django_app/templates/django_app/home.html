@@ -6,9 +6,14 @@
 </head>
 <body>
     <h1>名前と日時を入力してください</h1>
-    <form method="post" action="{% url 'redirect_target_url_name' %}">
+    <form method="post" action="{% url 'home' %}"> 
         {% csrf_token %}
-        {{ form.as_p }}
+        <label for="name">名前:</label>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="datetime">日時:</label>
+        <input type="datetime-local" id="datetime" name="datetime"><br>
+
         <button type="submit" style="appearance: button;">登録</button>
     </form>
 </body>

@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 def check_date_and_name(request):
     dataList = [
+    { "date": "2023-08-01", "name": "坂村健" },
+    { "date": "2023-08-02", "name": "井上円了" },
     { "date": "2023-08-30", "name": "Alice" },
     { "date": "2023-08-30", "name": "ooo" },
     { "date": "2023-08-29", "name": "Bob" },

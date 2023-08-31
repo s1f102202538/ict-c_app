@@ -42,6 +42,17 @@
       color: #6c757d;
     }
 
+    /* Center the submit button */
+    .center-submit {
+      text-align: center;
+    }
+
+    /* Enlarge the calendar button */
+    .large-calendar-button {
+      font-size: 18px;
+      padding: 10px 20px;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 576px) {
       .container {
@@ -67,7 +78,9 @@
         <label for="nameInput">お名前を教えてください。</label>
         <input type="text" id="nameInput" name="nameInput" class="form-control">
       </div>
-      <button type="submit" class="btn btn-primary">Check Date and Name</button>
+      <div class="center-submit">
+        <button type="submit" class="btn btn-primary large-calendar-button">Check Date and Name</button>
+      </div>
     </form>
   </div>
 

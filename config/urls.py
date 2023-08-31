@@ -21,5 +21,6 @@ from django_app import views as django_app
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', django_app.index, name='index'),
-    path('home/', django_app.home, name='home')
+    path('match/', django_app.People_list, name='People_list')
+
 ]

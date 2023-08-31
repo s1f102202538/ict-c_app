@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date and Name Matching App</title>
+  <!-- Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom styles to enhance the design */
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      margin-top: 50px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    h1 {
+      color: #343a40;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .bottom-right {
+      position: fixed;
+      bottom: 50px;
+      right: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Styling for result section */
+    #result {
+      text-align: center;
+      font-size: 18px;
+      color: #6c757d;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 576px) {
+      .container {
+        margin-top: 20px;
+      }
+
+      .bottom-right {
+        bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Tinder Appointment</h1>
+    <form method="post" action="{% url 'check_date_and_name' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="dateInput">希望する日程を教えてください。</label>
+        <input type="date" id="dateInput" name="dateInput" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="nameInput">お名前を教えてください。</label>
+        <input type="text" id="nameInput" name="nameInput" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Check Date and Name</button>
+    </form>
+  </div>
+
+  <div class="container mt-5">
+    <p id="result">{{ result }}</p>
+  </div>
+</body>
+</html>

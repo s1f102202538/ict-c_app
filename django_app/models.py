@@ -11,3 +11,4 @@ class Article(models.Model):
 class Person(models.Model):
     name = models.CharField(max_length = 100)
     date = models.DateField()
+    money = models.IntegerField()

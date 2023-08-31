@@ -17,3 +17,21 @@ def People_list(request):
     people = Person.objects.all()
     context = {'people' : people}
     return render(request, 'match.html', context)
+
+#登録した日程が同じ人をグループ分け
+def matching_view(request):
+    sameday_people = {}
+    people = Person.objects.all()
+    for person in people:
+        if person.date not in sameday_people:
+            sameday_people[person.date] = []
+        sameday_people[person.date].append(person)
+
+matching_results = {}
+
+#マッチング実行
+
+
+
+        
+        

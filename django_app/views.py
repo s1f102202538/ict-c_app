@@ -45,7 +45,7 @@ def check_date_and_name(request):
         else:
             result = f"{nameInput}さん、誰ともマッチしませんでした😢"
         
-        return render(request, "date_matching.html", {"result": result})
+        return render(request, "django_app/date_matching.html", {"result": result})
     
-    return render(request, "date_matching.html", {"result": ""})
+    return render(request, "django_app/date_matching.html", {"result": ""})
 

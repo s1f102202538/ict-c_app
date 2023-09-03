@@ -1,124 +1,123 @@
 /* styles.css */
 /* Custom styles to enhance the design */
 body {
-    background-color: #FCEFF0; /* 薄いピンク */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
+  background-color: #FCEFF0; /* 薄いピンク */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+.container {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+h1 {
+  color: #343A40;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+.bottom-right {
+  position: fixed;
+  bottom: 50px;
+  right: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+/* Styling for result section */
+#result {
+  text-align: center;
+  font-size: 18px;
+  color: #6C757D;
+  /* Add hover color for result */
+  transition: color 0.3s ease-in-out;
+}
+/* Change hover color for result */
+#result:hover {
+  color: #E8469D;
+}
+/* Center the submit button */
+.center-submit {
+  text-align: center;
+}
+/* Enlarge the calendar button */
+.large-calendar-button {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+.heart-container {
+  text-align: center; /* Center the heart button */
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+.heart {
+  position: relative;
+  width: 100px;
+  height: 90px;
+  background: none;
+  border: none;
+}
+.heart:before,
+.heart:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 80px;
+  background: #F88DC8;
+  border-radius: 50px 50px 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+.heart:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+/* Add style for the heart button text */
+.heart span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* Responsive adjustments */
+@media (max-width: 576px) {
   .container {
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  h1 {
-    color: #343A40;
-  }
-  .form-group {
-    margin-bottom: 20px;
+    margin-top: 20px;
   }
   .bottom-right {
-    position: fixed;
-    bottom: 50px;
-    right: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    bottom: 20px;
   }
-  /* Styling for result section */
-  #result {
-    text-align: center;
-    font-size: 18px;
-    color: #6C757D;
-    /* Add hover color for result */
-    transition: color 0.3s ease-in-out;
-  }
-  /* Change hover color for result */
-  #result:hover {
-    color: #E8469D;
-  }
-  /* Center the submit button */
-  .center-submit {
-    text-align: center;
-  }
-  /* Enlarge the calendar button */
-  .large-calendar-button {
-    font-size: 18px;
-    padding: 10px 20px;
-  }
-  .heart-container {
-    text-align: center; /* Center the heart button */
-    margin-top: 20px; /* Adjust the margin as needed */
-  }
-  .heart {
-    position: relative;
-    width: 100px;
-    height: 90px;
-    background: none;
-    border: none;
-  }
-  .heart:before,
-  .heart:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 50px;
-    height: 80px;
-    background: #F88DC8;
-    border-radius: 50px 50px 0 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-  }
-  .heart:after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-  }
-  /* Add style for the heart button text */
-  .heart span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  /* Responsive adjustments */
-  @media (max-width: 576px) {
-    .container {
-      margin-top: 20px;
-    }
-    .bottom-right {
-      bottom: 20px;
-    }
-  }
-  /* Animation styles */
-  .container {
-    transition: background-color 0.3s ease-in-out;
-  }
-  .container:hover {
-    background-color: pink;
-  }
-  .heart-container {
-    transition: transform 0.3s ease-in-out;
-  }
-  .heart-container:hover {
-    transform: scale(1.1);
-  }
-  /* Remove hover color change for heart button */
-  .heart {
-    background-color: transparent !important;
-    transition: none;
-  }
-  /* Remove hover color change for heart button text */
-  .heart span {
-    color: initial !important;
-    transition: none;
-  }
-  .heart1 {
-    animation: pounding .5s linear infinite alternate;
-  }
-  @keyframes pounding {
-    0% { transform: scale(1.0); }
-    100% { transform: scale(0.5); }
-  }
-  
+}
+/* Animation styles */
+.container {
+  transition: background-color 0.3s ease-in-out;
+}
+.container:hover {
+  background-color: pink;
+}
+.heart-container {
+  transition: transform 0.3s ease-in-out;
+}
+.heart-container:hover {
+  transform: scale(1.1);
+}
+/* Remove hover color change for heart button */
+.heart {
+  background-color: transparent !important;
+  transition: none;
+}
+/* Remove hover color change for heart button text */
+.heart span {
+  color: initial !important;
+  transition: none;
+}
+.heart1 {
+  animation: pounding .5s linear infinite alternate;
+}
+@keyframes pounding {
+  0% { transform: scale(1.0); }
+  100% { transform: scale(0.5); }
+}

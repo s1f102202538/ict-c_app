@@ -12,18 +12,50 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-  <div class="container">
-    <h1 class="text-center">Tinder Appointment</h1>
+  <!-- ナビゲーションバーを上部に配置 -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Date Matching App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container mt-5"> <!-- 上部に余白を追加 -->
+    <!-- "Tinder Appointment"をわかりやすい位置に移動 -->
+    <h1 class="text-center mb-4">Tinder Appointment</h1>
+    
+    <!-- ユーザーネームをわかりやすい位置に配置 -->
+    <div class="text-center">
+      <h1>ようこそ！{{ user.username }}さん</h1>
+    </div>
+    
     <form method="post" action="{% url 'check_date_and_name' %}">
       {% csrf_token %}
+      <br>
+      <br>
+      <br>
+      <br>
       <div class="form-group">
-        <label for="dateInput" class="text-center">希望する日程を教えてください。</label>
+        <h3 class="text-center">希望する日程を教えてください。</h3>
+        <br>
         <input type="date" id="dateInput" name="dateInput" class="form-control">
       </div>
-      <div class="form-group">
-        <label for="nameInput" class="text-center">お名前を教えてください。</label>
-        <input type="text" id="nameInput" name="nameInput" class="form-control">
-      </div>
+      <br>
       <div class="center-submit">
         <div class="heart-container">
           <button type="submit" class="heart heart1"></button>
@@ -34,5 +66,3 @@
       <p id="result" class="mt-4">{{ result }}</p>
     </div>
   </div>
-</body>
-</html>

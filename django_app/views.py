@@ -52,7 +52,7 @@ def check_date_and_name(request):
             matching_names = ", ".join(item["name"] + "さん" for item in matchingData)  # ここを変更
             result = f"{dateInput}:"+f"{matching_names}とマッチしました❤"
         else:
-            result = f"{dateInput}:"+"誰ともマッチしませんでした😢"
+            result = f"{dateInput}は"+"誰ともマッチしませんでした😢"
         
         return render(request, "django_app/date_matching.html", {"result": result})
     

@@ -29,7 +29,6 @@ h1 {
 /* Styling for result section */
 #result {
   text-align: center;
-  font-size: 18px;
   color: #6C757D;
   /* Add hover color for result */
   transition: color 0.3s ease-in-out;

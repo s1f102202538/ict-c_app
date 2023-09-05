@@ -1,53 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ユーザー登録</title>
-  <link rel="stylesheet" href="{% static 'django_app/styles.css' %}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container">
-        <h1 class="navbar-brand mx-auto" href="#">Tinder Appointment</h1>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="{% if user.is_authenticated %} /django_app/user {% else %} /django_app/login {% endif %}">
-                    {% if user.is_authenticated %}
-                      {{ user.username }}さん
-                    {% else %}
-                      未ログイン
-                    {% endif %}
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/">ホーム</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        マッチングメニュー
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="###">希望日登録</a>
-                        <a class="dropdown-item" href="/django_app/user">マッチングを確認</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+{% extends 'base.html' %}
+{% block content %}
 
   <div class="container mt-5">
     <h1 class="text-center">ユーザー登録</h1>
@@ -60,20 +12,4 @@
     </form>
   </div>
 
-  <!-- フッター -->
-  <footer class="footer fixed-bottom">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <p>&copy; 2023 ICT-C Team5 Tinder Appointment</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Jnujsl5/xy5r5o9tnzrF5E5CZ50w5+gD6RZtiO5Fp3J2j6F" crossorigin="anonymous"></script>
-</body>
-</html>
+{%endblock%}

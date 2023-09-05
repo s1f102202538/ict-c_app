@@ -1,17 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
-  <div class="container mt-5">
+  <div class="container m-5">
     <form method="post" action="{% url 'check_date_and_name' %}">
       {% csrf_token %}
-      <br>
-      <br>
       <div class="form-group">
-        <h3 class="text-center">希望する日程を教えてください。</h3>
-        <br>
+        <h3 class="text-center mb-3">希望する日程を教えてください。</h3>
         <input type="date" id="dateInput" name="dateInput" class="form-control">
       </div>
-      <br>
       <div class="center-submit">
         <div class="heart-container">
           <button type="submit" class="heart heart1"></button>
@@ -26,8 +21,6 @@
           {{ result }}
         {% endif %}
       </h3>
-      
     </div>
   </div>
-
-{%endblock%}
+{% endblock %}

@@ -24,7 +24,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/django_app/user">{{ user.username }}さん</a>
+                  <a class="nav-link" href="{% if user.is_authenticated %} /django_app/user {% else %} /django_app/login {% endif %}">
+                    {% if user.is_authenticated %}
+                      {{ user.username }}さん
+                    {% else %}
+                      未ログイン
+                    {% endif %}
+                  </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/">ホーム</a>
@@ -65,7 +71,14 @@
       </div>
     </form>
     <div class="mt-3">
-      <h3 id="result" class="mt-4">{{ user.username }}さん{{ result }}</h3>
+      <h3 id="result" class="mt-4">
+        {% if user.is_authenticated %}
+          {{ user.username }}さん{{ result }}
+        {% else %}
+          {{ result }}
+        {% endif %}
+      </h3>
+      
     </div>
   </div>
 

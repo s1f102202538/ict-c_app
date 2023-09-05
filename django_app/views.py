@@ -47,12 +47,15 @@ def check_date_and_name(request):
         dateInput = request.POST.get("dateInput")
         
         matchingData = [item for item in dataList if item["date"] == dateInput]
+
+        if dateInput=="":
+            return render(request, "django_app/date_matching.html", {"result": "、日程を入力してからマッチングを確認してください"})
         
         if matchingData:
-            matching_names = ", ".join(item["name"] + "さん" for item in matchingData)  # ここを変更
-            result = f"{dateInput}:"+f"{matching_names}とマッチしました❤"
+            matching_names = ", ".join(item["name"] + "さん" for item in matchingData)  
+            result = f"、{dateInput} : "+f"{matching_names}とマッチしました❤"
         else:
-            result = f"{dateInput}は"+"誰ともマッチしませんでした😢"
+            result = f"、{dateInput} : "+"誰ともマッチしませんでした😢"
         
         return render(request, "django_app/date_matching.html", {"result": result})
     

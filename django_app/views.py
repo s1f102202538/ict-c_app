@@ -9,57 +9,9 @@ from .forms import SignupForm, LoginForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-
-def check_date_and_name(request):
-    dataList = [
-    { "date": "2023-08-01", "name": "坂村健" },
-    { "date": "2023-08-02", "name": "井上円了" },
-    { "date": "2023-08-30", "name": "Alice" },
-    { "date": "2023-08-30", "name": "ooo" },
-    { "date": "2023-08-29", "name": "Bob" },
-    { "date": "2023-08-28", "name": "Charlie" },
-    { "date": "2023-08-27", "name": "David" },
-    { "date": "2023-08-26", "name": "Eva" },
-    { "date": "2023-08-25", "name": "Frank" },
-    { "date": "2023-08-24", "name": "Grace" },
-    { "date": "2023-08-23", "name": "Henry" },
-    { "date": "2023-08-22", "name": "Ivy" },
-    { "date": "2023-08-21", "name": "Jack" },
-    { "date": "2023-08-20", "name": "Karen" },
-    { "date": "2023-08-19", "name": "Leo" },
-    { "date": "2023-08-18", "name": "Mia" },
-    { "date": "2023-08-17", "name": "Nathan" },
-    { "date": "2023-08-16", "name": "Olivia" },
-    { "date": "2023-08-15", "name": "Paul" },
-    { "date": "2023-08-14", "name": "Quinn" },
-    { "date": "2023-08-13", "name": "Rachel" },
-    { "date": "2023-08-12", "name": "Samuel" },
-    { "date": "2023-08-11", "name": "Tina" },
-    { "date": "2023-08-10", "name": "Ulysses" },
-    { "date": "2023-08-09", "name": "Victoria" },
-    { "date": "2023-08-08", "name": "William" },
-    { "date": "2023-08-07", "name": "Xander" },
-    { "date": "2023-08-06", "name": "Yara" },
-    { "date": "2023-08-05", "name": "Zane" },
-]
-    
-    if request.method == "POST":
-        dateInput = request.POST.get("dateInput")
-        
-        matchingData = [item for item in dataList if item["date"] == dateInput]
-
-        if dateInput=="":
-            return render(request, "django_app/date_matching.html", {"result": "、日程を入力してからマッチングを確認してください"})
-        
-        if matchingData:
-            matching_names = ", ".join(item["name"] + "さん" for item in matchingData)  
-            result = f"、{dateInput} : "+f"{matching_names}とマッチしました❤"
-        else:
-            result = f"、{dateInput} : "+"誰ともマッチしませんでした😢"
-        
-        return render(request, "django_app/date_matching.html", {"result": result})
-    
-    return render(request, "django_app/date_matching.html", {"result": ""})
+from .models import dayregister
+from django.shortcuts import render, redirect
+from django.db.models import Q
 
 def get_calendar_events(request):
     SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
@@ -75,6 +27,8 @@ def get_calendar_events(request):
 
 def index(request):
     return render(request, 'django_app/index.html')
+
+###########ログイン関係###########
 
 def signup_view(request):
     if request.method == 'POST':
@@ -129,3 +83,50 @@ def user_view(request):
 def logout_view(request):
     logout(request)
     return redirect('/django_app/login/')
+
+###################マッチング###################
+
+def check_date_and_name(request):
+    if request.method == "POST":
+        date_input = request.POST.get("dateInput")
+        
+        if date_input == "":
+            return render(request, "django_app/date_matching.html", {"day": "入力なし"})
+        
+        # データベースから日付を検索
+        matching_bookings = dayregister.objects.filter(Q(date_1=date_input) | Q(date_2=date_input) | Q(date_3=date_input))
+        
+        if matching_bookings.exists():
+            matching_names = [booking.user.username for booking in matching_bookings]  # ユーザー名を取得
+        else:
+            matching_names = None
+        
+        return render(request, "django_app/date_matching.html", {"matching_names": matching_names, "day":date_input})
+    
+    return render(request, "django_app/date_matching.html", {"matching_names": "", "day": ""})
+
+def day_register_form(request):
+    if request.method == 'POST':
+        date_1 = request.POST.get('date_1')
+        date_2 = request.POST.get('date_2')
+        date_3 = request.POST.get('date_3')
+        amount = request.POST.get('amount')
+        
+        user = request.user  
+
+        dayregister.objects.filter(user=user).delete()
+
+        booking = dayregister(user=user, date_1=date_1, date_2=date_2, date_3=date_3, amount=amount)
+        booking.save()
+        
+        return redirect('register_check')
+    
+    registering = dayregister.objects.filter(user=request.user)
+    return render(request, 'django_app/day_register_form.html', {'registering': registering})
+
+
+def register_check(request):
+    registering = dayregister.objects.filter(user=request.user)
+    return render(request, 'django_app/register_check.html', {'registering': registering})
+
+###################

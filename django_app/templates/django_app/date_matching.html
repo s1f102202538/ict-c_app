@@ -1,26 +1,48 @@
 {% extends 'base.html' %}
 {% block content %}
-  <div class="container m-5">
-    <form method="post" action="{% url 'check_date_and_name' %}">
-      {% csrf_token %}
-      <div class="form-group">
-        <h3 class="text-center mb-3">希望する日程を教えてください。</h3>
-        <input type="date" id="dateInput" name="dateInput" class="form-control">
-      </div>
-      <div class="center-submit">
-        <div class="heart-container">
-          <button type="submit" class="heart heart1"></button>
-        </div>
-      </div>
-    </form>
-    <div class="mt-3">
-      <h3 id="result" class="mt-4">
-        {% if user.is_authenticated %}
-          {{ user.username }}さん{{ result }}
-        {% else %}
-          {{ result }}
-        {% endif %}
-      </h3>
+<div class="container m-5">
+  <form method="post" action="{% url 'check_date_and_name' %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <h3 class="text-center mb-3">希望する日程を教えてください。</h3>
+      <input type="date" id="dateInput" name="dateInput" class="form-control">
     </div>
+    <div class="center-submit">
+      <div class="heart-container">
+        <button type="submit" class="heart heart1"></button>
+      </div>
+    </div>
+  </form>
+
+  <div class="mt-3">
+    <h3 id="result" class="mt-4">
+      {% if user.is_authenticated %}
+      {% if matching_names %}
+      {{ day }}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>マッチングしたユーザー名</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for name in matching_names %}
+          <tr>
+            <td>{{ name }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% elif matching_names == None and day != "入力なし" %}
+      {{ day }}
+      <p>誰ともマッチしませんでした😢</p>
+      <p>別の日付をお試しください</p>
+      {% endif %}
+      {% if day == "入力なし"%}
+      <p>日程を入力してからマッチングを確認してください</p>
+      {% endif %}
+      {% endif %}
+    </h3>
   </div>
+</div>
 {% endblock %}

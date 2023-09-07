@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
+{% if user.is_authenticated %}
+    <h1>ようこそ！<a href="/django_app/user">{{ user.username }}さん</a></h1>
+{% else %}
+    <h1>未ログインです。<br/><a href="/django_app/login">ログイン</a><br/><a href="/django_app/signup">ユーザー登録</a> </h1>
+{% endif %}
+
+
 {% endblock %}

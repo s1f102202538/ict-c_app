@@ -1,15 +1,10 @@
-{% load static %}
-<!doctype html>
-<html lang="ja">
+{% extends 'base.html' %}
+{% block content %}
 
-<head>
-  <meta charset="utf-8">
-  <title>{{username}}のページ</title>
-</head>
+  <div class="container mt-5">
+    <h1>{{username}}さんのページ</h1>
+    <p><a href="{% url 'logout' %}">ログアウトする</a></p>
+  </div>
 
-<body>
-  <h1>{{username}}</h1>
-  <p><a href="{% url 'logout' %}">ログアウト</a></p>
-</body>
+{%endblock%}
 
-</html>

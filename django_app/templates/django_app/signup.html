@@ -1,19 +1,15 @@
-{% load static %}
-<!doctype html>
-<html lang="ja">
+{% extends 'base.html' %}
+{% block content %}
 
-<head>
-  <meta charset="utf-8">
-  <title>ユーザー登録</title>
-</head>
+  <div class="container mt-5">
+    <h1 class="text-center">ユーザー登録</h1>
+    <form action="{% url 'signup' %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary">登録</button>
+      </div>
+    </form>
+  </div>
 
-<body>
-  <h1>ユーザー登録</h1>
-  <form action="{% url 'signup' %}" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <p><input type="submit" value="登録"></p>
-  </form>
-</body>
-
-</html>
+{%endblock%}

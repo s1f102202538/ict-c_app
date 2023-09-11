@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div class="container m-5">
+      <h3 class="text-center mb-3">登録済みデータ</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>日程1</th>
+            <th>日程2</th>
+            <th>日程3</th>
+            <th>課金額</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for register in registering %}
+            <tr>
+              <td>{{ register.date_1 }}</td>
+              <td>{{ register.date_2 }}</td>
+              <td>{{ register.date_3 }}</td>
+              <td>{{ register.amount }}</td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="4">まだマッチング希望日を登録していないようです</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="container m-5">
+      <form method="post" action="{% url 'day_register_form' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          {% if registering %}
+            <h3 class="text-center mb-3">新たにマッチングを希望する日程と課金額を入力してください</h3>
+            <h3 class="text-center mb-3">※すでに登録されているデータは削除され、新しいデータに更新されます</h3>
+          {% else %}
+            <h3 class="text-center mb-3">マッチングを希望する日程と課金額を入力してください</h3>
+          {% endif %}
+          <label for="date_1">日程1:</label>
+          <input type="date" id="date_1" name="date_1" class="form-control" required>
+          <label for="date_2">日程2:</label>
+          <input type="date" id="date_2" name="date_2" class="form-control" required>
+          <label for="date_3">日程3:</label>
+          <input type="date" id="date_3" name="date_3" class="form-control" required>
+          <label for="amount">課金額:</label>
+          <input type="number" id="amount" name="amount" class="form-control" required>
+        </div>
+        <div class="text-center">
+          <div class="heart-container">
+            <button type="submit" class="heart heart1"></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

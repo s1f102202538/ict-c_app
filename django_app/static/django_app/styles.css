@@ -7,6 +7,10 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  font-family:Verdana, "MSPゴシック", sans-serif;
+}
+html {
+	overflow-y:scroll;
 }
 .container {
   background-color: #FFFFFF;
@@ -119,4 +123,25 @@ h1 {
 @keyframes pounding {
   0% { transform: scale(1.0); }
   100% { transform: scale(0.5); }
+}
+.alert {
+  border: none;
+  color: #155724;
+  background-color: #d4edda;
+  position: relative;
+  padding: 0.5rem 1.25rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0;
 }

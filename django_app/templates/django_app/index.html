@@ -1,11 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-
 {% if user.is_authenticated %}
     <h1>ようこそ！<a href="/django_app/user">{{ user.username }}さん</a></h1>
 {% else %}
-    <h1>未ログインです。<br/><a href="/django_app/login">ログイン</a><br/><a href="/django_app/signup">ユーザー登録</a> </h1>
+    <h1>未ログインです。<br/><a href="/django_app/login">ログイン</a><br/><a href="/django_app/signup">ユーザー登録</a></h1>
 {% endif %}
-
-
+<div class="d-flex flex-column align-items-center">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mb-3 ml-3 mt-2" data-toggle="modal" data-target="#myModal">
+      お知らせ
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">お知らせ</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3 class="mb-0">{{ registering.matched_user }}さんとマッチングが成功しました！</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
 {% endblock %}

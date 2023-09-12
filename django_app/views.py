@@ -26,7 +26,8 @@ def get_calendar_events(request):
     return JsonResponse({"events": events})
 
 def index(request):
-    return render(request, 'django_app/index.html')
+    registering = dayregister.objects.get(user=request.user)
+    return render(request, 'django_app/index.html', {'registering': registering})
 
 ###########ログイン関係###########
 

@@ -10,4 +10,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('day_register_form/', views.day_register_form, name='day_register_form'),
     path('register_check/', views.register_check, name='register_check'),  
+    path('match_callback/<str:name>/', views.match_callback, name='match_callback'),
+    path('match_check/', views.match_check, name='match_check'), 
 ]

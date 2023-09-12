@@ -10,10 +10,12 @@ class dayregister(models.Model):
         CustomUser,  # カスタムユーザーモデルを使用
         on_delete=models.CASCADE,
     )
-    date_1 = models.DateTimeField()  # データ型を変更
-    date_2 = models.DateTimeField()  # データ型を変更
-    date_3 = models.DateTimeField()  # データ型を変更
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-
+    date_1 = models.DateTimeField()  
+    date_2 = models.DateTimeField()  
+    date_3 = models.DateTimeField()  
+    amount = models.PositiveIntegerField() #データ型を変更
+    matched = models.BooleanField(default=False,blank=True)  
+    matched_user = models.TextField(blank=True)
+    matched_day = models.DateTimeField(blank=True, null=True, default=None)
     def __str__(self):
         return f"Booking on {self.date_1}, {self.date_2}, {self.date_3}"

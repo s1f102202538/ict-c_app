@@ -15,26 +15,25 @@ class Command(BaseCommand):
         end_date = timezone.datetime(2023, 9, 30)  # 終了日
 
         for user in users:
-            for _ in range(10):  # 10個のデモデータを生成する例
-                date_1 = self.generate_random_date(start_date, end_date)
-                date_2 = self.generate_random_date(start_date, end_date)
-                date_3 = self.generate_random_date(start_date, end_date)
-                amount = random.randint(1, 10000)  # ランダムな amount を生成
+            date_1 = self.generate_random_date(start_date, end_date)
+            date_2 = self.generate_random_date(start_date, end_date)
+            date_3 = self.generate_random_date(start_date, end_date)
+            amount = random.randint(1, 10000)  # ランダムな amount を生成
 
-                dayregister.objects.create(
-                    user=user,
-                    date_1=date_1,
-                    date_2=date_2,
-                    date_3=date_3,
-                    amount=amount,
-                )
+            dayregister.objects.create(
+                user=user,
+                date_1=date_1,
+                date_2=date_2,
+                date_3=date_3,
+                amount=amount,
+            )
 
-                # データを表示
-                message = (
-                    f"Created dayregister for user {user.username} - "
-                    f"date_1: {date_1}, date_2: {date_2}, date_3: {date_3}, amount: {amount}"
-                )
-                self.stdout.write(self.style.SUCCESS(message))
+            # データを表示
+            message = (
+                f"Created dayregister for user {user.username} - "
+                f"date_1: {date_1}, date_2: {date_2}, date_3: {date_3}, amount: {amount}"
+            )
+            self.stdout.write(self.style.SUCCESS(message))
 
     def generate_random_date(self, start_date, end_date):
         # 指定された範囲内のランダムな日付を生成
